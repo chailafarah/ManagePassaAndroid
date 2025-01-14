@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">ManagePass</string>
+    <string name="app_name">Managepass</string>
+    <!-- Home Page -->
+    <string name="home_page_title">Manage All Passwords</string>
+    <string name="home_page_description">Manage Pass is a modern password management application that allows users to easily and securely manage their credentials for various websites.</string>
+    <string name="home_page_button">continue</string>
+    <!-- Login Page -->
+    <string name="login_page_title">Sign in to your Account</string>
+    <string name="login_page_description">Enter your email and password to log in</string>
+    <string name="login_page_label_email">Email</string>
+    <string name="login_page_input_email">@string/login_page_label_email</string>
+    <string name="login_page_label_password">Password</string>
+    <string name="login_page_input_password">@string/login_page_label_password</string>
+    <string name="login_page_button_sign_in">Sign In</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="home_page_button">continue</string>
     <!-- Login Page -->
     <string name="login_page_title">Sign in to your Account</string>
-    <string name="login_page_description">Enter your email and password to log in</string>
+    <string name="login_page_sous_title">Enter your email and password to log in</string>
     <string name="login_page_label_email">Email</string>
     <string name="login_page_input_email">@string/login_page_label_email</string>
     <string name="login_page_label_password">Password</string>

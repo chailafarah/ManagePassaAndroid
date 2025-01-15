@@ -13,5 +13,7 @@
     <string name="login_page_placeholder_password">********</string>
     <string name="login_forgot_password">Mot de passe oublié ?</string>
     <string name="login_page_button_sign_in">Se connecter</string>
-    <string name="text_or">ou</string>
+    <string name="text_or">Ou</string>
+    <string name="login_page_button_google">Se connecter avec Google</string>
+    <string name="login_text_create_account">Vous n\'avez pas de compte ? <a href="yourapp://register">Inscrivez-vous</a></string>
 </resources>

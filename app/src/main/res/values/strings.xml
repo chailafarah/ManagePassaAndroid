@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">Managepass</string>
     <!-- Home Page -->
-    <string name="home_page_title">Manage All Passwords</string>
-    <string name="home_page_description">Manage Pass is a modern password management application that allows users to easily and securely manage their credentials for various websites.</string>
-    <string name="home_page_button">Continue</string>
+    <string name="home_page_title">Gérer tous les mots de passe</string>
+    <string name="home_page_description">Manage Pass est une application moderne de gestion de mots de passe qui permet aux utilisateurs de gérer facilement et en toute sécurité leurs identifiants pour divers sites web</string>
+    <string name="home_page_button">Continuer</string>
     <!-- Login Page -->
-    <string name="login_page_title">Sign in to your Account</string>
-    <string name="login_page_sous_title">Enter your email and password to log in</string>
+    <string name="login_page_title">Connectez-vous à votre compte</string>
+    <string name="login_page_sous_title">Entrez votre email et votre mot de passe pour vous connecter</string>
     <string name="login_page_label_email">Email</string>
     <string name="login_page_placeholder_email">Loisbecket@gmail.com</string>
-    <string name="login_page_label_password">Password</string>
+    <string name="login_page_label_password">Mot de passe</string>
     <string name="login_page_placeholder_password">********</string>
-    <string name="login_forgot_password">Forgot Password ?</string>
-    <string name="login_page_button_sign_in">Sign In</string>
-    <string name="text_or">or</string>
+    <string name="login_forgot_password">Mot de passe oublié ?</string>
+    <string name="login_page_button_sign_in">Se connecter</string>
+    <string name="text_or">ou</string>
 </resources>

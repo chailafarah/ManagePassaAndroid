@@ -10,104 +10,140 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" android:layout_marginLeft="24dp" android:layout_marginRight="24dp">
+        android:orientation="vertical"
+        android:layout_marginLeft="24dp" android:layout_marginRight="24dp"  android:gravity="center_vertical">
         <!-- title -->
         <TextView
             android:id="@+id/login_page_title"
             style="@style/largebold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_page_title" android:layout_marginTop="88dp" android:maxWidth="235dp" />
+            android:maxWidth="235dp"
+            android:text="@string/login_page_title" />
         <!-- sous title -->
-         <TextView
+        <TextView
             android:id="@+id/login_page_sous_title"
             style="@style/xs_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_page_sous_title" android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:text="@string/login_page_sous_title" />
         <!-- email label -->
-         <TextView
+        <TextView
             android:id="@+id/email_label"
             style="@style/xs_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_page_label_email"  android:layout_marginTop="32dp" android:layout_marginBottom="5dp"/>
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/login_page_label_email" />
         <!-- email input -->
-        <EditText android:id="@+id/email_input"
+        <EditText
+            android:id="@+id/email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_page_placeholder_email" android:textColorHint="@color/gray_placeholder" android:background="@drawable/edit_text_border" android:padding="12dp"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/login_page_placeholder_email"
+            android:padding="12dp"
+            android:textColorHint="@color/gray_placeholder" />
         <!-- password label -->
         <TextView
             android:id="@+id/password_label"
             style="@style/xs_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_page_label_password" android:layout_marginTop="17dp" android:layout_marginBottom="5dp"/>
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/login_page_label_password" />
         <!-- password input -->
-        <EditText android:id="@+id/password_input"
+        <EditText
+            android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_page_placeholder_password" android:textColorHint="@color/gray_placeholder" android:background="@drawable/edit_text_border" android:drawableEnd="@drawable/icon_eye_off" android:padding="12dp"/>
+            android:background="@drawable/edit_text_border"
+            android:drawableEnd="@drawable/icon_eye_off"
+            android:hint="@string/login_page_placeholder_password"
+            android:padding="12dp"
+            android:textColorHint="@color/gray_placeholder" />
         <!-- forget password -->
         <TextView
             android:id="@+id/forget_text"
             style="@style/xs_Semibold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="end"
             android:text="@string/login_forgot_password"
-            android:textColor="@color/bleu_violet" android:layout_marginTop="16dp" android:layout_marginBottom="16dp" android:gravity="end"/>
+            android:textColor="@color/bleu_violet" />
         <!-- Sign In Button -->
         <Button
             android:id="@+id/sign_in_button"
+            style="@style/s_semibold_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/mauve_pastel" android:text="@string/login_page_button_sign_in" style="@style/s_semibold_white" android:layout_marginBottom="32dp"/>c
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/mauve_pastel"
+            android:text="@string/login_page_button_sign_in" />c
         <!-- OR -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_horizontal|center_vertical">
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/line"/>
+                app:srcCompat="@drawable/line" />
+
             <TextView
+                style="@style/xs_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_or" android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" style="@style/xs_regular"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/text_or" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/line"/>
+                app:srcCompat="@drawable/line" />
         </LinearLayout>
         <!-- Google Button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" android:padding="14dp" android:layout_marginTop="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_google"
             android:gravity="center"
-            android:background="@drawable/button_google">
+            android:orientation="horizontal"
+            android:padding="14dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_google"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/icon_google" />
+
             <TextView
+                style="@style/s_semibold_neutral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login_page_button_google" style="@style/s_semibold_neutral"/>
+                android:text="@string/login_page_button_google" />
 
         </LinearLayout>
         <!-- Create Account -->
         <TextView
             android:id="@+id/create_account_text"
+            style="@style/xs_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/xs_medium" android:gravity="center"
-            android:text="@string/login_text_create_account" android:layout_marginTop="32dp" android:textColorLink="@color/violet_clair_pastel" android:linksClickable="true" />
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:linksClickable="true"
+            android:text="@string/login_text_create_account"
+            android:textColorLink="@color/violet_clair_pastel" />
 
     </LinearLayout>
 

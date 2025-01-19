@@ -45,7 +45,7 @@
         <item name="android:textColor">@color/neutral</item>
         <item name="android:textSize">10dp</item>
     </style>
-    <style name="mediumlarge" parent="lexend_medium" >
+    <style name="mediumlarge" parent="lexend_bold" >
         <item name="android:textColor">@color/neutral</item>
         <item name="android:textSize">16dp</item>
     </style>

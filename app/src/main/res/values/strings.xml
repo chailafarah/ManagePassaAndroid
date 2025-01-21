@@ -16,4 +16,15 @@
     <string name="text_or">Ou</string>
     <string name="login_page_button_google">Se connecter avec Google</string>
     <string name="login_text_create_account">Vous n\'avez pas de compte ? <a href="yourapp://register">Inscrivez-vous</a></string>
+    <!-- Register Page -->
+    <string name="register_page_title">S\’inscrire</string>
+    <string name="register_page_description">Entrez vos informations pour créer un compte</string>
+    <string name="register_label_nom">Nom de famille</string>
+    <string name="register_label_prenom">Prénom</string>
+    <string name="register_label_password">Définir un mot de passe</string>
+    <string name="register_page_button_sign_up">S’inscrire</string>
+    <string name="register_page_placeholder_prenom">Prénom</string>
+    <string name="register_page_placeholder_nom">Nom</string>
+    <string name="register_text_signin_account">Vous avez déjà un compte ? <a href="yourapp://login">Se connecter</a></string>
+
 </resources>

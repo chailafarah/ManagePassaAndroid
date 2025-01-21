@@ -1,29 +1,20 @@
 package com.example.managepass
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class SignInActivity : AppCompatActivity() {
+class signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_in)
+        setContentView(R.layout.activity_signup)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        // Récupérer le bouton continue par son ID
-        val button = findViewById<Button>(R.id.sign_in_button);
-        // Ajouter un écouteur d'événements sur le bouton
-        button.setOnClickListener {
-            // Ouvrir l'activité SignInActivity
-            startActivity(Intent(this, signup::class.java))
         }
     }
 }

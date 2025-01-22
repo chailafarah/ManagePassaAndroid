@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56102907656",
+    "project_id": "managepassandroid",
+    "storage_bucket": "managepassandroid.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56102907656:android:a4bdaa6d7a8a610b4746bd",
+        "android_client_info": {
+          "package_name": "com.example.managepass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARYymNFI7rQw_0zRwUnH_eySs9HgLvG14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

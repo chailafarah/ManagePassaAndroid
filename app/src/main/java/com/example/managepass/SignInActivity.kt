@@ -51,7 +51,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = mAuth!!.currentUser
                     Toast.makeText(
-                        this@SignInActivity, "Authentication success.",
+                        this@SignInActivity, "Authentication ${user!!.displayName} success.",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {

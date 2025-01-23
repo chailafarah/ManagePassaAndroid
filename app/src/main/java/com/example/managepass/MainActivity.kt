@@ -25,5 +25,13 @@ class MainActivity : AppCompatActivity() {
             // Ouvrir l'activité SignInActivity
             startActivity(Intent(this, SignInActivity::class.java))
         }
+        // Récupérer le bouton signup par son ID
+        val button2 = findViewById<Button>(R.id.signup);
+        // Ajouter un écouteur d'événements sur le bouton
+        button2.setOnClickListener {
+            // Ouvrir l'activité SignInActivity
+            startActivity(Intent(this, signup::class.java))
+        }
+
     }
 }

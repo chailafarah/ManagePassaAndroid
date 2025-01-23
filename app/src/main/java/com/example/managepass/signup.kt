@@ -34,7 +34,7 @@ class signup : AppCompatActivity() {
         }
         val button = findViewById<Button>(R.id.sign_up_button)
         val firstNameEditText = findViewById<EditText>(R.id.register_input_prenom)
-        val lastNameEditText = findViewById<EditText>(R.id.register_input_prenom)
+        val lastNameEditText = findViewById<EditText>(R.id.register_input_nom)
         val emailEditText = findViewById<EditText>(R.id.register_email_input)
         val passwordEditText = findViewById<EditText>(R.id.register_password_input)
         button.setOnClickListener {

@@ -31,23 +31,33 @@
     </style>
     <style name="s_regular" parent="lexend_medium">
         <item name="android:textColor">@color/gris_ardoise</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">14dp</item>
     </style>
     <style name="s_semibold_white" parent="lexend_semibold">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">14dp</item>
     </style>
     <style name="s_semibold_neutral" parent="lexend_semibold">
         <item name="android:textColor">@color/neutral</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">14dp</item>
     </style>
     <style name="s_medium" parent="lexend_medium">
         <item name="android:textColor">@color/neutral</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+    <style name="s_medium_grey_neutral" parent="lexend_medium">
+        <item name="android:textColor">@color/grey_neutral</item>
+        <item name="hintTextColor">@color/grey_neutral</item>
+        <item name="android:textSize">14dp</item>
     </style>
     <style name="mediumlarge" parent="lexend_bold" >
         <item name="android:textColor">@color/neutral</item>
         <item name="android:textSize">16dp</item>
+    </style>
+    <!-- lexend semi bold 18dp -->
+    <style name="mediumlarge_semibold" parent="lexend_semibold">
+        <item name="android:textColor">@color/neutral</item>
+        <item name="android:textSize">18dp</item>
     </style>
     <style name="largebold" parent="lexend_bold">
         <item name="android:textColor">@color/neutral</item>

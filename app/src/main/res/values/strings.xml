@@ -28,5 +28,7 @@
     <string name="register_page_placeholder_nom">Nom</string>
     <string name="register_text_signin_account">Vous avez déjà un compte ? </string>
     <string name="register_text_signin">Se connecter</string>
-
+    <!-- Listing Passwords -->
+    <string name="listing_passwords_placeholder_recherche">Rechercher un mot de passe</string>
+    <string name="listing_passwords_title">Récemment utilisée</string>
 </resources>

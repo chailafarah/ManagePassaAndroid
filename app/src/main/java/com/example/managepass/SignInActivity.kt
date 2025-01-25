@@ -48,6 +48,14 @@ class SignInActivity : AppCompatActivity() {
             // Ouvrir l'activité SignInActivity
             sendPasswordResetEmail(email.text.toString())
         }
+
+        // Récupérer le bouton inscrivez vous par son ID
+        val button3 = findViewById<TextView>(R.id.sign_up_text);
+        // Ajouter un écouteur d'événements sur le bouton
+        button3.setOnClickListener {
+            //rediriger vers l'activité signup
+            startActivity(Intent(this, signup::class.java))
+        }
     }
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]

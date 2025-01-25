@@ -1,9 +1,11 @@
 package com.example.managepass
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -61,6 +63,13 @@ class signup : AppCompatActivity() {
                         }
                     }
             }
+        }
+        //recuperer le bouton se connecter par son ID
+        val button2 = findViewById<TextView>(R.id.sign_in_text)
+        //ajouter un ecouteur d'evenements sur le bouton
+        button2.setOnClickListener {
+            //rediriger vers l'activité SignInActivity
+            startActivity(Intent(this, SignInActivity::class.java))
         }
     }
 }

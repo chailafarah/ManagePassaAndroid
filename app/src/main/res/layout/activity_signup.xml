@@ -152,17 +152,35 @@
                 android:text="@string/login_page_button_google" />
 
         </LinearLayout>
-        <!-- texte pour rediriger vers la page login -->
-        <TextView
-            android:id="@+id/text_login"
-            style="@style/xs_medium"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:linksClickable="true"
-            android:text="@string/register_text_signin_account"
-            android:textColorLink="@color/violet_clair_pastel" />
+            android:layout_marginTop="32dp">
+
+            <!-- le texte vous avez déjà un compte -->
+            <TextView
+                android:id="@+id/create_account_text"
+                style="@style/xs_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_text_signin_account"
+                />
+
+            <!-- Texte se connecter qui redirige vers la page login -->
+            <TextView
+                android:id="@+id/sign_in_text"
+                style="@style/xs_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_text_signin"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/bleu_violet"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

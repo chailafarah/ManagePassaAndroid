@@ -2,9 +2,11 @@ package com.example.managepass
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,11 +37,11 @@ class SignInActivity : AppCompatActivity() {
         // Récupérer le bouton sign_in_button par son ID
         val button = findViewById<Button>(R.id.sign_in_button);
         val email = findViewById<EditText>(R.id.sign_in_email_input);
-        val password = findViewById<EditText>(R.id.password_input);
+        val passwordInput = findViewById<EditText>(R.id.password_input);
         // Ajouter un écouteur d'événements sur le bouton
         button.setOnClickListener {
             // Ouvrir l'activité SignInActivity
-            signIn(email.text.toString(), password.text.toString())
+            signIn(email.text.toString(), passwordInput.text.toString())
         }
         // Récupérer le bouton forgot_password_button par son ID
         val button2 = findViewById<TextView>(R.id.forget_text);
@@ -56,6 +58,24 @@ class SignInActivity : AppCompatActivity() {
             //rediriger vers l'activité signup
             startActivity(Intent(this, signup::class.java))
         }
+        val eyeIcon = findViewById<ImageView>(R.id.eye_icon)
+// Gérer le clic sur l'icône de l'œil
+        eyeIcon.setOnClickListener {
+            // Vérifie si le mot de passe est masqué ou non
+            if (passwordInput.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD != 0) {
+                // Si le mot de passe est masqué, on le rend visible
+                passwordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
+                eyeIcon.setImageResource(R.drawable.icon_eye_on)  // Changer l'icône de l'œil
+            } else {
+                // Sinon, on le masque à nouveau
+                passwordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                eyeIcon.setImageResource(R.drawable.icon_eye_off)  // Revenir à l'icône de l'œil fermé
+            }
+
+            // Revenir au focus de l'EditText pour que l'utilisateur puisse continuer à taper
+            passwordInput.setSelection(passwordInput.text.length)
+        }
+
     }
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]

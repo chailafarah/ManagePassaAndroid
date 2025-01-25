@@ -15,7 +15,7 @@
     <string name="login_page_button_sign_in">Se connecter</string>
     <string name="text_or">Ou</string>
     <string name="login_page_button_google">Se connecter avec Google</string>
-    <string name="login_text_create_account">Vous n\'avez pas de compte ? <a href="yourapp://register">Inscrivez-vous</a></string>
+    <string name="login_text_create_account">Vous n\'avez pas de compte ? <a>Inscrivez-vous</a></string>
     <!-- Register Page -->
     <string name="register_page_title">S\’inscrire</string>
     <string name="register_page_description">Entrez vos informations pour créer un compte</string>

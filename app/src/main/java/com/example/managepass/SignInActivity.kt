@@ -1,9 +1,11 @@
 package com.example.managepass
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +41,13 @@ class SignInActivity : AppCompatActivity() {
             // Ouvrir l'activité SignInActivity
             signIn(email.text.toString(), password.text.toString())
         }
+        // Récupérer le bouton forgot_password_button par son ID
+        val button2 = findViewById<TextView>(R.id.forget_text);
+        // Ajouter un écouteur d'événements sur le bouton
+        button2.setOnClickListener {
+            // Ouvrir l'activité SignInActivity
+            sendPasswordResetEmail(email.text.toString())
+        }
     }
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]
@@ -54,6 +63,10 @@ class SignInActivity : AppCompatActivity() {
                         this@SignInActivity, "Authentication ${user!!.displayName} success.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    // Redirection vers l'activité ListingPasswords
+                    val intent = Intent(this@SignInActivity, ListingPasswords::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -65,4 +78,36 @@ class SignInActivity : AppCompatActivity() {
             }
         // [END sign_in_with_email]
     }
+    // méthode pour envoyer un e-mail de réinitialisation de mot de passe
+    private fun sendPasswordResetEmail(email: String) {
+        if (email.isEmpty()) {
+            Toast.makeText(
+                this, "Veuillez entrer une adresse e-mail valide.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        // Envoyer un e-mail de réinitialisation de mot de passe
+        mAuth!!.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "Email de réinitialisation envoyé à $email")
+                    Toast.makeText(
+                        this,
+                        "Un e-mail de réinitialisation a été envoyé à $email.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Log.w(TAG, "Échec de l'envoi de l'e-mail de réinitialisation", task.exception)
+                    Toast.makeText(
+                        this,
+                        "Échec de l'envoi de l'e-mail de réinitialisation. Vérifiez votre adresse e-mail.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+
 }

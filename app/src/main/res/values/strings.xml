@@ -39,4 +39,7 @@
     <string name="add_password_placeholder_username">Entrez le nom d\'utilisateur</string>
     <string name="add_password_placeholder_email">Entrez l\'adresse e-mail</string>
     <string name="add_password_button_save">Enregistrer</string>
+
+    <!-- Delete Password Activity -->
+    <string name="delete_password_button_delete">Supprimer</string>
 </resources>

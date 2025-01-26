@@ -24,6 +24,6 @@ class ListingPasswords : AppCompatActivity() {
         //recureper les données de l'utilisateur nom et prenom
         val user = Firebase.auth.currentUser
         // set welcome_text (textview) to "Welcome $user.displayName"
-        findViewById<TextView>(R.id.welcome_text).text = "Welcome ${user!!.displayName}"
+        findViewById<TextView>(R.id.welcome_text).text = "Bonjour ${user!!.displayName}"
     }
 }

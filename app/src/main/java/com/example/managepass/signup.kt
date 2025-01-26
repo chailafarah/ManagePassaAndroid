@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -58,6 +59,12 @@ class signup : AppCompatActivity() {
                             user!!.updateProfile(profileUpdates)
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
+                                        Toast.makeText(
+                                            baseContext, "Inscription réussie vous pouvez se connecter maintenant.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        // Redirection vers l'activité signin pour se connecter
+                                        startActivity(Intent(this, SignInActivity::class.java))
                                     }
                                 }
                         }

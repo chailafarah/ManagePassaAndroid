@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ManagePass"
         tools:targetApi="31">
         <activity
+            android:name=".AddPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListingPasswords"
             android:exported="false" />
         <activity

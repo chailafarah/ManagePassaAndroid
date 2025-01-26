@@ -37,9 +37,6 @@
     <string name="add_password_placeholder_site_url">Entrez l\'URL</string>
     <string name="add_password_label_username">Nom d\'utilisateur</string>
     <string name="add_password_placeholder_username">Entrez le nom d\'utilisateur</string>
-    <string name="add_password_label_email">E-mail</string>
     <string name="add_password_placeholder_email">Entrez l\'adresse e-mail</string>
-    <string name="add_password_label_password">Password</string>
-    <string name="add_password_placeholder_password">Mot de passe</string>
     <string name="add_password_button_save">Enregistrer</string>
 </resources>

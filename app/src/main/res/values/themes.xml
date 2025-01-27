@@ -41,6 +41,10 @@
         <item name="android:textColor">@color/neutral</item>
         <item name="android:textSize">14dp</item>
     </style>
+    <style name="s_semibold_neutral_800" parent="lexend_semibold">
+        <item name="android:textColor">@color/neutral_800</item>
+        <item name="android:textSize">14dp</item>
+    </style>
     <style name="s_medium" parent="lexend_medium">
         <item name="android:textColor">@color/neutral</item>
         <item name="android:textSize">14dp</item>

@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_border"
-            android:hint="@string/login_page_placeholder_email" style="@style/s_medium_grey_neutral"
+            android:hint="@string/login_page_placeholder_email"
             android:padding="12dp"
             android:textColorHint="@color/gray_placeholder" />
         <!-- password label -->
@@ -69,7 +69,6 @@
                 android:hint="@string/login_page_placeholder_password"
                 android:padding="12dp"
                 android:inputType="textPassword"
-                style="@style/s_medium_grey_neutral"
                 android:textColorHint="@color/gray_placeholder" android:background="@drawable/edit_text_border"  />
 
             <!-- Icône cliquable de l'œil -->

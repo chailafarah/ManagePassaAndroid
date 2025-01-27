@@ -1,6 +1,7 @@
 package com.example.managepass
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -25,5 +26,12 @@ class ListingPasswords : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         // set welcome_text (textview) to "Welcome $user.displayName"
         findViewById<TextView>(R.id.welcome_text).text = "Bonjour ${user!!.displayName}"
+        // Récupérer le bouton ajouter vous par son ID
+        val button3 = findViewById<TextView>(R.id.add_password_button);
+        // Ajouter un écouteur d'événements sur le bouton
+        button3.setOnClickListener {
+            //rediriger vers l'activité signup
+            startActivity(Intent(this, AddPasswordActivity::class.java))
+        }
     }
 }

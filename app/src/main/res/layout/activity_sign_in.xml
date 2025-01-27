@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_border"
-            android:hint="@string/login_page_placeholder_email"
+            android:hint="@string/login_page_placeholder_email" style="@style/s_medium_grey_neutral"
             android:padding="12dp"
             android:textColorHint="@color/gray_placeholder" />
         <!-- password label -->
@@ -69,6 +69,7 @@
                 android:hint="@string/login_page_placeholder_password"
                 android:padding="12dp"
                 android:inputType="textPassword"
+                style="@style/s_medium_grey_neutral"
                 android:textColorHint="@color/gray_placeholder" android:background="@drawable/edit_text_border"  />
 
             <!-- Icône cliquable de l'œil -->
@@ -105,54 +106,6 @@
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/mauve_pastel"
             android:text="@string/login_page_button_sign_in" />
-        <!-- OR -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/line" />
-
-            <TextView
-                style="@style/xs_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/text_or" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/line" />
-        </LinearLayout>
-        <!-- Google Button -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/button_google"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="14dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/icon_google" />
-
-            <TextView
-                style="@style/s_semibold_neutral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_page_button_google" />
-
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

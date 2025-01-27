@@ -59,7 +59,7 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(this, signup::class.java))
         }
         val eyeIcon = findViewById<ImageView>(R.id.eye_icon)
-// Gérer le clic sur l'icône de l'œil
+        // Gérer le clic sur l'icône de l'œil
         eyeIcon.setOnClickListener {
             // Vérifie si le mot de passe est masqué ou non
             if (passwordInput.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD != 0) {

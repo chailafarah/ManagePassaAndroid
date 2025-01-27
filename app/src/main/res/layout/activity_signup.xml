@@ -85,15 +85,32 @@
             android:layout_marginBottom="5dp"
             android:text="@string/register_label_password" />
         <!-- password input -->
-        <EditText
-            android:id="@+id/register_password_input"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_border"
-            android:drawableEnd="@drawable/icon_eye_off"
-            android:hint="@string/login_page_placeholder_password"
-            android:padding="12dp"
-            android:textColorHint="@color/gray_placeholder" />
+            >
+            <!-- Champ de saisie du mot de passe -->
+            <EditText
+                android:id="@+id/register_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_page_placeholder_password"
+                android:padding="12dp"
+                android:inputType="textPassword"
+                android:textColorHint="@color/gray_placeholder" android:background="@drawable/edit_text_border"  />
+
+            <!-- Icône cliquable de l'œil -->
+            <ImageView
+                android:id="@+id/eye_icon"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/icon_eye_off"
+                android:clickable="true"
+                android:focusable="true" />
+        </RelativeLayout>
         <!-- Sign Up Button -->
         <Button
             android:id="@+id/sign_up_button"

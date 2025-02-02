@@ -49,6 +49,13 @@ class ListingPasswords : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
+                    // Extraire les données du document
+                    val title = document.getString("nom utilisateur") ?: "No Title"
+                    val subtitle = document.getString("email") ?: "No email"
+
+                    // Afficher les données dans les TextView
+                    findViewById<TextView>(R.id.nom_user_text_view).text = title
+                    findViewById<TextView>(R.id.email_text_view).text = subtitle
                 }
             }
             .addOnFailureListener { exception ->

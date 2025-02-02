@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +43,7 @@ class ListingPasswords : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         // set welcome_text (textview) to "Welcome $user.displayName"
         findViewById<TextView>(R.id.welcome_text).text = "Bonjour ${user!!.displayName}"
+        val container = findViewById<LinearLayout>(R.id.container)
         // recuperer les info d'utilisateur
         database
             .collection("passwords")
@@ -53,9 +56,12 @@ class ListingPasswords : AppCompatActivity() {
                     val title = document.getString("nom utilisateur") ?: "No Title"
                     val subtitle = document.getString("email") ?: "No email"
 
+                    val view = LayoutInflater.from(this).inflate(R.layout.item, container, false)
+
                     // Afficher les données dans les TextView
-                    findViewById<TextView>(R.id.nom_user_text_view).text = title
-                    findViewById<TextView>(R.id.email_text_view).text = subtitle
+                    view.findViewById<TextView>(R.id.nom_user_text_view).text = title
+                    view.findViewById<TextView>(R.id.email_text_view).text = subtitle
+                    container.addView(view)
                 }
             }
             .addOnFailureListener { exception ->

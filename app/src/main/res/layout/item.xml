@@ -1,0 +1,58 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="16dp">
+
+    <!-- Icon Section -->
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/grey_rounded_background"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/home_image_view"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/icon_google" />
+    </LinearLayout>
+
+    <!-- Text Section (nom utilisateur + email) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <!-- nom utilisateur -->
+        <TextView
+            android:id="@+id/nom_user_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compte Google"
+            style="@style/s_semibold_neutral_800" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/email_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="john.doe@gmail.com" style="@style/xs_regular"
+            />
+    </LinearLayout>
+
+    <!-- Copy Icon Section -->
+    <ImageView
+        android:id="@+id/copy_icon_view"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginStart="16dp"
+        app:srcCompat="@drawable/copy__1_"
+        android:contentDescription="Copier" />
+</LinearLayout>

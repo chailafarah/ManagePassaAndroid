@@ -51,4 +51,6 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.play.services.auth)
     implementation(platform(libs.firebase.bom))
+    implementation(libs.coil) // Remplace par la dernière version de Coil
+
 }

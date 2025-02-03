@@ -1,5 +1,4 @@
 package com.example.managepass
-
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -17,9 +16,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import coil.load
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -59,16 +57,30 @@ class ListingPasswords : AppCompatActivity() {
                     Log.d(TAG, "${document.id} => ${document.data}")
 
                     // Extraire les données du document
-                    val title = document.getString("nom utilisateur") ?: "No Title"
-                    val subtitle = document.getString("email") ?: "No email"
-
+                    val title = document.getString("nom_utilisateur") ?: "No Title"
+                    val subtitle = document.getString("adresse_email") ?: "No email"
+                    val siteUrl = document.getString("url_site") ?: ""  // On récupère l'URL, mais on ne l'affiche pas
                     // Créer une vue pour chaque élément
                     val view = LayoutInflater.from(this).inflate(R.layout.item, container, false)
 
                     // Afficher les données dans les TextView
                     view.findViewById<TextView>(R.id.nom_user_text_view).text = title
                     view.findViewById<TextView>(R.id.email_text_view).text = subtitle
+                    // Charger l'icône du site (favicon)
+                    val domain = siteUrl.removePrefix("https://").removePrefix("http://")
+                    val faviconView = view.findViewById<ImageView>(R.id.home_image_view)
+                    if (siteUrl.isNotEmpty()) {
+                        // Extraire uniquement le domaine pour l'URL du favicon
+                        val domain = siteUrl.removePrefix("https://").removePrefix("http://")
+                        val faviconUrl = "https://www.google.com/s2/favicons?sz=64&domain=$domain"
 
+                        // Charger l'icône du site avec Coil
+                        faviconView.load(faviconUrl) {
+                            placeholder(R.drawable.user__1_)  // Icône par défaut pendant le chargement
+                            Log.d("Favicon", "Favicon URL: $faviconUrl")
+                            error(R.drawable.default_image) // Icône par défaut si l'URL ne fonctionne pas
+                        }
+                    }
                     // Récupérer l'icône de copie et ajouter un écouteur de clic
                     val copyIconView = view.findViewById<ImageView>(R.id.copy_icon_view)
                     copyIconView.setOnClickListener {

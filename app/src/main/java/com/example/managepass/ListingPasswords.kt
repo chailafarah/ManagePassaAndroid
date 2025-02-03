@@ -60,6 +60,7 @@ class ListingPasswords : AppCompatActivity() {
                     val title = document.getString("nom_utilisateur") ?: "No Title"
                     val subtitle = document.getString("adresse_email") ?: "No email"
                     val siteUrl = document.getString("url_site") ?: ""  // On récupère l'URL, mais on ne l'affiche pas
+                    val password = document.getString("mot_de_passe") ?: ""
                     // Créer une vue pour chaque élément
                     val view = LayoutInflater.from(this).inflate(R.layout.item, container, false)
 
@@ -95,6 +96,19 @@ class ListingPasswords : AppCompatActivity() {
 
                     // Ajouter la vue au conteneur
                     container.addView(view)
+                    view.setOnClickListener {
+                        // Passer les données à l'activité Edit_Delete_Password
+                        val intent = Intent(this, Edit_Delete_Password::class.java)
+
+                        // Passer les informations de l'élément (nom, email, url) via l'intent
+                        intent.putExtra("nom_utilisateur", title)
+                        intent.putExtra("adresse_email", subtitle)
+                        intent.putExtra("url_site", siteUrl)
+                        intent.putExtra("mot_de_passe", password)
+
+                        // Démarrer l'activité
+                        startActivity(intent)
+                    }
                 }
             }
             .addOnFailureListener { exception ->

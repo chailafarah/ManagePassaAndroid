@@ -45,10 +45,10 @@ class AddPasswordActivity : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.register_input_password).text.toString()
             var database = Firebase.firestore
             val tgData = hashMapOf(
-                "password" to password,
-                "nom utilisateur" to nomutilisateur,
-                "email" to email,
-                "url" to siteurl,
+                "mot_de_passe" to password,
+                "nom_utilisateur" to nomutilisateur,
+                "adresse_email" to email,
+                "url_site" to siteurl,
                 "uid" to user.uid
             )
             //recuperer les informationn du listing email password nom d'utilistaeur url du site qui exist sur firabase

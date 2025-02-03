@@ -1,13 +1,18 @@
 package com.example.managepass
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -52,20 +57,37 @@ class ListingPasswords : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
+
                     // Extraire les données du document
                     val title = document.getString("nom utilisateur") ?: "No Title"
                     val subtitle = document.getString("email") ?: "No email"
 
+                    // Créer une vue pour chaque élément
                     val view = LayoutInflater.from(this).inflate(R.layout.item, container, false)
 
                     // Afficher les données dans les TextView
                     view.findViewById<TextView>(R.id.nom_user_text_view).text = title
                     view.findViewById<TextView>(R.id.email_text_view).text = subtitle
+
+                    // Récupérer l'icône de copie et ajouter un écouteur de clic
+                    val copyIconView = view.findViewById<ImageView>(R.id.copy_icon_view)
+                    copyIconView.setOnClickListener {
+                        // Copier l'e-mail dans le presse-papiers
+                        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clip = ClipData.newPlainText("Email", subtitle)
+                        clipboard.setPrimaryClip(clip)
+
+                        // Afficher un message à l'utilisateur
+                        Toast.makeText(this, "E-mail copié : $subtitle", Toast.LENGTH_LONG).show()
+                    }
+
+                    // Ajouter la vue au conteneur
                     container.addView(view)
                 }
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
+
     }
 }

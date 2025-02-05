@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -35,7 +36,7 @@ class ListingPasswords : AppCompatActivity() {
             insets
         }
         // Récupérer le id du button ajouter
-        val buttonajouter = findViewById<Button>(R.id.button_ajouter);
+        val buttonajouter = findViewById<ImageButton>(R.id.button_ajouter);
         // Ajouter un écouteur d'événements sur le bouton
         buttonajouter.setOnClickListener {
             // Ouvrir l'activité SignInActivity

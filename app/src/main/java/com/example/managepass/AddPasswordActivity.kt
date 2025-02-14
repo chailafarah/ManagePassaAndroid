@@ -35,14 +35,14 @@ class AddPasswordActivity : AppCompatActivity() {
         // set welcome_text (textview) to "Welcome $user.displayName"
         findViewById<TextView>(R.id.welcome_text).text = "Bonjour ${user!!.displayName}"
         // Récupérer le bouton  enregistrer pour ajouter des passwords
-        val buttonadd = findViewById<Button>(R.id.add_password_button_save);
+        val buttonadd = findViewById<Button>(R.id.button_save);
         // Ajouter un écouteur d'événements sur le bouton
         buttonadd.setOnClickListener {
             // Récupération des valeurs des champs
             val siteurl = findViewById<EditText>(R.id.site_url_input).text.toString()
             val nomutilisateur = findViewById<EditText>(R.id.add_username).text.toString()
             val email = findViewById<EditText>(R.id.add_email).text.toString()
-            val password = findViewById<EditText>(R.id.register_input_password).text.toString()
+            val password = findViewById<EditText>(R.id.input_password).text.toString()
             var database = Firebase.firestore
             val tgData = hashMapOf(
                 "mot_de_passe" to password,
@@ -71,6 +71,19 @@ class AddPasswordActivity : AppCompatActivity() {
                     Log.w(TAG, "Error adding document", e)
                 }
         }
+        val passwordField = findViewById<EditText>(R.id.input_password)
+        val refreshIcon = findViewById<ImageView>(R.id.refresh_icone)
+        refreshIcon.setOnClickListener {
+            val newPassword = generateRandomPassword(12) // Génère un mot de passe de 12 caractères
+            passwordField.setText(newPassword)
+        }
 
     }
+    private fun generateRandomPassword(length: Int): String {
+        val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&*()-_=+<>?"
+        return (1..length)
+            .map { chars.random() }
+            .joinToString("")
+    }
+
 }

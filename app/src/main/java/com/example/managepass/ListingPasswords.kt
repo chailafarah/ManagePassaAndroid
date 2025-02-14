@@ -5,9 +5,13 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -48,6 +52,9 @@ class ListingPasswords : AppCompatActivity() {
         // set welcome_text (textview) to "Welcome $user.displayName"
         findViewById<TextView>(R.id.welcome_text).text = "Bonjour ${user!!.displayName}"
         val container = findViewById<LinearLayout>(R.id.container)
+        val searchInput = findViewById<EditText>(R.id.recherche_input)
+        // Liste temporaire pour stocker les résultats de la recherche
+        val allPasswords = mutableListOf<View>()
         // recuperer les info d'utilisateur
         database
             .collection("passwords")
@@ -98,6 +105,7 @@ class ListingPasswords : AppCompatActivity() {
 
                     // Ajouter la vue au conteneur
                     container.addView(view)
+                    allPasswords.add(view) // ✅ Ajouter ici après l'ajout dans container
                     view.setOnClickListener {
                         // Passer les données à l'activité Edit_Delete_Password
                         val intent = Intent(this, Edit_Delete_Password::class.java)
@@ -117,5 +125,35 @@ class ListingPasswords : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
+
+        // Ajout du filtre de recherche
+        searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().lowercase()
+                container.removeAllViews()
+
+                for (view in allPasswords) {
+                    val title = view.findViewById<TextView>(R.id.nom_user_text_view).text.toString().lowercase()
+                    val email = view.findViewById<TextView>(R.id.email_text_view).text.toString().lowercase()
+
+                    if (title.contains(query) || email.contains(query)) {
+                        container.addView(view)
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+        //La déconnexion
+        val logoutIcon = findViewById<ImageView>(R.id.logout_icon)
+        logoutIcon.setOnClickListener {
+            // Rediriger vers l'écran de connexion
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish() // Ferme l'activité actuelle après la déconnexion
+        }
+
     }
 }

@@ -40,8 +40,8 @@ class AddPasswordActivity : AppCompatActivity() {
         buttonadd.setOnClickListener {
             // Récupération des valeurs des champs
             val siteurl = findViewById<EditText>(R.id.site_url_input).text.toString()
-            val nomutilisateur = findViewById<EditText>(R.id.add_password_placeholder_username).text.toString()
-            val email = findViewById<EditText>(R.id.add_password_placeholder_email).text.toString()
+            val nomutilisateur = findViewById<EditText>(R.id.add_username).text.toString()
+            val email = findViewById<EditText>(R.id.add_email).text.toString()
             val password = findViewById<EditText>(R.id.register_input_password).text.toString()
             var database = Firebase.firestore
             val tgData = hashMapOf(

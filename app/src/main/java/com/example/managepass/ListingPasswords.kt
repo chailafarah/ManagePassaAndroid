@@ -62,6 +62,7 @@ class ListingPasswords : AppCompatActivity() {
                     val subtitle = document.getString("adresse_email") ?: "No email"
                     val siteUrl = document.getString("url_site") ?: ""  // On récupère l'URL, mais on ne l'affiche pas
                     val password = document.getString("mot_de_passe") ?: ""
+                    val id = document.id
                     // Créer une vue pour chaque élément
                     val view = LayoutInflater.from(this).inflate(R.layout.item, container, false)
 
@@ -106,6 +107,7 @@ class ListingPasswords : AppCompatActivity() {
                         intent.putExtra("adresse_email", subtitle)
                         intent.putExtra("url_site", siteUrl)
                         intent.putExtra("mot_de_passe", password)
+                        intent.putExtra("id",id)
 
                         // Démarrer l'activité
                         startActivity(intent)
@@ -115,6 +117,5 @@ class ListingPasswords : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -107,7 +108,12 @@ class Edit_Delete_Password : AppCompatActivity() {
             }
         }
 
-
+        //lors du click sur le button close fermer l'activity du form add
+        val closeIcon: ImageView = findViewById(R.id.close_icon)
+        closeIcon.setOnClickListener {
+            finish() // Ferme l'Activity actuelle
+            startActivity(Intent(this, ListingPasswords::class.java))
+        }
 
     }
 }

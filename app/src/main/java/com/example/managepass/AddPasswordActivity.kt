@@ -77,6 +77,12 @@ class AddPasswordActivity : AppCompatActivity() {
             val newPassword = generateRandomPassword(12) // Génère un mot de passe de 12 caractères
             passwordField.setText(newPassword)
         }
+        //lors du click sur le button close fermer l'activity du form add
+        val closeIcon: ImageView = findViewById(R.id.close_icon)
+        closeIcon.setOnClickListener {
+            finish() // Ferme l'Activity actuelle
+            startActivity(Intent(this, ListingPasswords::class.java))
+        }
 
     }
     private fun generateRandomPassword(length: Int): String {

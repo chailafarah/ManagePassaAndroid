@@ -38,11 +38,17 @@ class AddPasswordActivity : AppCompatActivity() {
         val buttonadd = findViewById<Button>(R.id.button_save);
         // Ajouter un écouteur d'événements sur le bouton
         buttonadd.setOnClickListener {
-            // Récupération des valeurs des champs
-            val siteurl = findViewById<EditText>(R.id.site_url_input).text.toString()
-            val nomutilisateur = findViewById<EditText>(R.id.add_username).text.toString()
-            val email = findViewById<EditText>(R.id.add_email).text.toString()
-            val password = findViewById<EditText>(R.id.input_password).text.toString()
+            // Récupération des valeurs des champs avec trim()
+            val siteurl = findViewById<EditText>(R.id.site_url_input).text.toString().trim()
+            val nomutilisateur = findViewById<EditText>(R.id.add_username).text.toString().trim()
+            val email = findViewById<EditText>(R.id.add_email).text.toString().trim()
+            val password = findViewById<EditText>(R.id.input_password).text.toString().trim()
+
+            // Vérification que les champs ne sont pas vides
+            if (siteurl.isEmpty() || nomutilisateur.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             var database = Firebase.firestore
             val tgData = hashMapOf(
                 "mot_de_passe" to password,

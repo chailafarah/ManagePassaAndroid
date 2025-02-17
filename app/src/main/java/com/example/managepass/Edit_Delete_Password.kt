@@ -14,9 +14,19 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.Response
+import org.json.JSONObject
+import java.io.IOException
 
 class Edit_Delete_Password : AppCompatActivity() {
     private val TAG = "EditPasswords"
+    private val client = OkHttpClient()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,11 +42,17 @@ class Edit_Delete_Password : AppCompatActivity() {
         val urlSite = intent.getStringExtra("url_site")
         val password = intent.getStringExtra("mot_de_passe")
         val id = intent.getStringExtra("id")
+        if (password != null) {
+            decryptPassword(password) { decryptedPassword ->
+                runOnUiThread {
+                    findViewById<EditText>(R.id.edit_input_password).setText(decryptedPassword)
+                }
+            }
+        }
         // Remplir les champs EditText avec les données
         findViewById<EditText>(R.id.edit_username).setText(nomUtilisateur)
         findViewById<EditText>(R.id.edit_adresse_email).setText(adresseEmail)
         findViewById<EditText>(R.id.edit_url_site_input).setText(urlSite)
-        findViewById<EditText>(R.id.edit_input_password).setText(password)
         val user = Firebase.auth.currentUser
         // Récupérer le bouton  enregistrer pour modifier des passwords
         val buttonupdate = findViewById<Button>(R.id.btn_save);
@@ -47,35 +63,41 @@ class Edit_Delete_Password : AppCompatActivity() {
             val siteurl = findViewById<EditText>(R.id.edit_url_site_input).text.toString()
             val nomutilisateur = findViewById<EditText>(R.id.edit_username).text.toString()
             val email = findViewById<EditText>(R.id.edit_adresse_email).text.toString()
-            val password = findViewById<EditText>(R.id.edit_input_password).text.toString()
+            var password = findViewById<EditText>(R.id.edit_input_password).text.toString()
             var database = Firebase.firestore
-            val tgData = mapOf(
-                "mot_de_passe" to password,
-                "nom_utilisateur" to nomutilisateur,
-                "adresse_email" to email,
-                "url_site" to siteurl,
-                "uid" to user?.uid
-            )
-            //recuperer les informationn du listing email password nom d'utilistaeur url du site qui exist sur firabase
-            if (id != null) {
-                database
-                    .collection("passwords").document(id)
-                    .update(tgData)
-                    .addOnSuccessListener {
-                        Log.d(TAG, "DocumentSnapshot updated with ID: ${id}")
-                        Toast.makeText(
-                            this,
-                            "Les informations du site $urlSite ont été modifiées avec succès.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        // Redirection vers ListingPasswordActivity
-                        val intent = Intent(this, ListingPasswords::class.java)
-                        startActivity(intent)
-                        finish() // Ferme l'activité actuelle
+
+            encryptPassword(password) { encryptedPassword ->
+                runOnUiThread {
+                    val tgData = mapOf(
+                        "mot_de_passe" to encryptedPassword,
+                        "nom_utilisateur" to nomutilisateur,
+                        "adresse_email" to email,
+                        "url_site" to siteurl,
+                        "uid" to user?.uid
+                    )
+                    //recuperer les informationn du listing email password nom d'utilistaeur url du site qui exist sur firabase
+                    if (id != null) {
+                        database
+                            .collection("passwords").document(id)
+                            .update(tgData)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "DocumentSnapshot updated with ID: ${id}")
+                                Toast.makeText(
+                                    this,
+                                    "Les informations du site $urlSite ont été modifiées avec succès.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                // Redirection vers ListingPasswordActivity
+                                val intent = Intent(this, ListingPasswords::class.java)
+                                startActivity(intent)
+                                finish() // Ferme l'activité actuelle
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error updating document", e)
+                            }
                     }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error updating document", e)
-                    }
+
+                }
             }
         }
         buttonDelete.setOnClickListener {
@@ -115,5 +137,70 @@ class Edit_Delete_Password : AppCompatActivity() {
             startActivity(Intent(this, ListingPasswords::class.java))
         }
 
+    }
+
+    private fun decryptPassword(password: String, callback: (String) -> Unit) {
+        val url = "https://ca01-46-193-69-79.ngrok-free.app/api/decrypt-aes-gcm"  // Replace with your actual API URL
+        val json = JSONObject().apply {
+            put("plainText", password)
+            put("password", "chaimaa")
+        }
+
+        val body = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            json.toString()
+        )
+
+        val request = Request.Builder()
+            .url(url)
+            .addHeader("ngrok-skip-browser-warning", "true") // Add the required header
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { responseBody ->
+                    val jsonResponse = JSONObject(responseBody)
+                    val encryptedPassword = jsonResponse.getString("encryptedData")
+                    callback(encryptedPassword)
+                }
+            }
+        })
+    }
+    private fun encryptPassword(password: String, callback: (String) -> Unit) {
+        val url = "https://71e7-46-193-69-79.ngrok-free.app/api/encrypt-aes-gcm"  // Replace with your actual API URL
+        val json = JSONObject().apply {
+            put("plainText", password)
+            put("password", "chaimaa")
+        }
+
+        val body = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            json.toString()
+        )
+
+        val request = Request.Builder()
+            .url(url)
+            .addHeader("ngrok-skip-browser-warning", "true") // Add the required header
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { responseBody ->
+                    val jsonResponse = JSONObject(responseBody)
+                    val encryptedPassword = jsonResponse.getString("encryptedData")
+                    callback(encryptedPassword)
+                }
+            }
+        })
     }
 }

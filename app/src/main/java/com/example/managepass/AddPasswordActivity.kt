@@ -16,9 +16,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import org.json.JSONObject
+import java.io.IOException
 
 class AddPasswordActivity : AppCompatActivity() {
     private val TAG = "AddPasswords"
+    private val client = OkHttpClient()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,32 +55,37 @@ class AddPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             var database = Firebase.firestore
-            val tgData = hashMapOf(
-                "mot_de_passe" to password,
-                "nom_utilisateur" to nomutilisateur,
-                "adresse_email" to email,
-                "url_site" to siteurl,
-                "uid" to user.uid
-            )
-            //recuperer les informationn du listing email password nom d'utilistaeur url du site qui exist sur firabase
-            database
-                .collection("passwords")
-                .add(tgData)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    Toast.makeText(
-                        this,
-                        "Les informations du site $siteurl ont été ajoutées avec succès.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    // Redirection vers ListingPasswordActivity
-                    val intent = Intent(this, ListingPasswords::class.java)
-                    startActivity(intent)
-                    finish() // Ferme l'activité actuelle
+            encryptPassword(password) { encryptedPassword ->
+                runOnUiThread {
+                    val tgData = hashMapOf(
+                        "mot_de_passe" to encryptedPassword,
+                        "nom_utilisateur" to nomutilisateur,
+                        "adresse_email" to email,
+                        "url_site" to siteurl,
+                        "uid" to user.uid
+                    )
+                    //recuperer les informationn du listing email password nom d'utilistaeur url du site qui exist sur firabase
+                    database
+                        .collection("passwords")
+                        .add(tgData)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                            Toast.makeText(
+                                this,
+                                "Les informations du site $siteurl ont été ajoutées avec succès.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            // Redirection vers ListingPasswordActivity
+                            val intent = Intent(this, ListingPasswords::class.java)
+                            startActivity(intent)
+                            finish() // Ferme l'activité actuelle
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
                 }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                }
+            }
+
         }
         val passwordField = findViewById<EditText>(R.id.input_password)
         val refreshIcon = findViewById<ImageView>(R.id.refresh_icone)
@@ -96,6 +106,38 @@ class AddPasswordActivity : AppCompatActivity() {
         return (1..length)
             .map { chars.random() }
             .joinToString("")
+    }
+    private fun encryptPassword(password: String, callback: (String) -> Unit) {
+        val url = "https://6f37-46-193-69-79.ngrok-free.app/api/encrypt-aes-gcm"  // Replace with your actual API URL
+        val json = JSONObject().apply {
+            put("plainText", password)
+            put("password", "chaimaa")
+        }
+
+        val body = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            json.toString()
+        )
+
+        val request = Request.Builder()
+            .url(url)
+            .addHeader("ngrok-skip-browser-warning", "true") // Add the required header
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { responseBody ->
+                    val jsonResponse = JSONObject(responseBody)
+                    val encryptedPassword = jsonResponse.getString("encryptedData")
+                    callback(encryptedPassword)
+                }
+            }
+        })
     }
 
 }
